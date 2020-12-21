@@ -6,7 +6,7 @@
 #define MAXLEN 20
 
 
-int atoi(char c);
+void display(char source[], FILE *file);
 
 
 int main(){
@@ -23,6 +23,7 @@ int main(){
             return 1;
         }
 
+        display("IN.txt", fp);
 
         // создаем переменную для хранения числа , полученного из файла
         int temp = 0;
@@ -58,6 +59,8 @@ int main(){
         
         // выводим количество нечетных чисел в второй файл
         fprintf(fp2, " %d", oddCount);
+
+        display("OUT.txt", fp2);
         
     fclose(fp);//закрываем исходный файл
     fclose(fp2);//закрываем файл для записи
@@ -72,6 +75,7 @@ int main(){
             return 1;
         }
 
+        display("IN.dat", fp);
         c = 'a';
         temp = 0;
         int count = 0;
@@ -109,7 +113,7 @@ int main(){
             arr[0] -= arr[i];
         }
         
-
+        display("IN.dat", fp);
 
     fclose(fp);
 
@@ -129,3 +133,16 @@ int main(){
     return 0;
 }
 
+void display(char source[], FILE *file){
+    printf("display \"%s\"\n", source);
+    char c;
+    
+    do
+    {
+        c = getc(file);
+        if (c != EOF) putchar(c);
+    } while (c != EOF);
+    
+    printf("\n\"%s\" is over\n", source);
+    
+}
